@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biddge</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+
+    <div class="nav-left">
+      <a href="index.html" class="brand">Biddge</a>
+      <a href="about.html">About</a>
+      <a href="membership.html">Membership</a>
+      <a href="creator.html">Join as Creator</a>
+      <a href="events.html">Events</a>
+      <a href="careers.html">Careers</a>
+    </div>
+
+    <div class="nav-center">
+      <input
+        class="nav-search"
+        type="search"
+        placeholder="Search anything…"
+        onkeyup="liveSearch(this.value)"
+        aria-label="Search for communities or content"
+      />
+    </div>
+
+    <div class="nav-right">
+      <a href="support.html" class="nav-icon" aria-label="Support">🎧</a>
+      <span class="nav-lang">🌐 EN</span>
+      <span class="nav-divider">|</span>
+
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="theme-icon"></span>
+        <span class="theme-text">Theme</span>
+      </button>
+
+      <a href="login.html" class="nav-link">Log in</a>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" onclick="closeMenu()" aria-label="Close menu">✕</button>
+
+  <a href="about.html">About</a>
+  <a href="membership.html">Membership</a>
+  <a href="creator.html">Join as Creator</a>
+  <a href="events.html">Events</a>
+  <a href="careers.html">Careers</a>
+  <a href="login.html">Login</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>A better you<br>every day</h1>
+    <p>Be part of the world’s most powerful life transformation platform</p>
+
+    <div class="hero-actions">
+      <a href="membership.html" class="btn primary">Become a Member</a>
+      <a href="membership.html" class="btn secondary">Explore programs</a>
+    </div>
+
+    <div class="hero-video">
+      <video src="assets/hero-preview.mp4" autoplay muted loop playsinline poster="assets/hero-poster.jpg" aria-label="Hero video preview"></video>
+    </div>
+  </section>
+
+  <!-- COMMUNITIES -->
+  <section class="communities">
+    <h2>Popular Communities</h2>
+
+    <div class="community-slider two-rows">
+
+      <div class="community-track row-1">
+        <div class="community-card" onclick="openCommunity('career')" tabindex="0" role="button" aria-label="Open Career Growth community">
+          <h3>Career Growth</h3><p>Mentorship focused</p>
+        </div>
+        <div class="community-card" onclick="openCommunity('startup')" tabindex="0" role="button" aria-label="Open Startup Builders community">
+          <h3>Startup Builders</h3><p>Founders & makers</p>
+        </div>
+        <div class="community-card" onclick="openCommunity('ai')" tabindex="0" role="button" aria-label="Open AI & ML Hub community">
+          <h3>AI & ML Hub</h3><p>42k learners</p>
+        </div>
+        <div class="community-card" onclick="openCommunity('tech')" tabindex="0" role="button" aria-label="Open Tech Community">
+          <h3>Tech Community</h3><p>85k+ members</p>
+        </div>
+
+        <!-- duplicates -->
+        <div class="community-card duplicate" onclick="openCommunity('career')" tabindex="0" role="button" aria-label="Open Career Growth community">
+          <h3>Career Growth</h3>
+        </div>
+        <div class="community-card duplicate" onclick="openCommunity('startup')" tabindex="0" role="button" aria-label="Open Startup Builders community">
+          <h3>Startup Builders</h3>
+        </div>
+        <div class="community-card duplicate" onclick="openCommunity('ai')" tabindex="0" role="button" aria-label="Open AI & ML Hub community">
+          <h3>AI & ML Hub</h3>
+        </div>
+        <div class="community-card duplicate" onclick="openCommunity('tech')" tabindex="0" role="button" aria-label="Open Tech Community">
+          <h3>Tech Community</h3>
+        </div>
+      </div>
+
+      <div class="community-track row-2">
+        <div class="community-card" onclick="openCommunity('fitness')" tabindex="0" role="button" aria-label="Open Fitness & Health community">
+          <h3>Fitness & Health</h3><p>Daily habits</p>
+        </div>
+        <div class="community-card" onclick="openCommunity('design')" tabindex="0" role="button" aria-label="Open Design Circle community">
+          <h3>Design Circle</h3><p>Creative minds</p>
+        </div>
+        <div class="community-card" onclick="openCommunity('career')" tabindex="0" role="button" aria-label="Open Career Growth community">
+          <h3>Career Growth</h3><p>Mentorship focused</p>
+        </div>
+        <div class="community-card" onclick="openCommunity('startup')" tabindex="0" role="button" aria-label="Open Startup Builders community">
+          <h3>Startup Builders</h3><p>Founders & makers</p>
+        </div>
+
+        <!-- duplicates -->
+        <div class="community-card duplicate" onclick="openCommunity('fitness')" tabindex="0" role="button" aria-label="Open Fitness & Health community">
+          <h3>Fitness & Health</h3>
+        </div>
+        <div class="community-card duplicate" onclick="openCommunity('design')" tabindex="0" role="button" aria-label="Open Design Circle community">
+          <h3>Design Circle</h3>
+        </div>
+        <div class="community-card duplicate" onclick="openCommunity('career')" tabindex="0" role="button" aria-label="Open Career Growth community">
+          <h3>Career Growth</h3>
+        </div>
+        <div class="community-card duplicate" onclick="openCommunity('startup')" tabindex="0" role="button" aria-label="Open Startup Builders community">
+          <h3>Startup Builders</h3>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- APP SECTION -->
+  <section class="app-section">
+
+    <!-- FLOATING BACKGROUND -->
+    <div class="app-bg">
+
+      <!-- ROW 1 (LEFT) -->
+      <div class="app-bg-track left fast">
+        <!-- originals -->
+        <img src="assets/cards/1.png" alt="App feature card 1">
+        <img src="assets/cards/2.png" alt="App feature card 2">
+        <img src="assets/cards/3.png" alt="App feature card 3">
+        <img src="assets/cards/4.png" alt="App feature card 4">
+        <img src="assets/cards/5.png" alt="App feature card 5">
+        <img src="assets/cards/6.png" alt="App feature card 6">
+        <img src="assets/cards/7.png" alt="App feature card 7">
+        <img src="assets/cards/8.png" alt="App feature card 8">
+        <img src="assets/cards/9.png" alt="App feature card 9">
+
+        <!-- duplicates (MANDATORY) -->
+        <img src="assets/cards/1.png" alt="App feature card 1">
+        <img src="assets/cards/2.png" alt="App feature card 2">
+        <img src="assets/cards/3.png" alt="App feature card 3">
+        <img src="assets/cards/4.png" alt="App feature card 4">
+        <img src="assets/cards/5.png" alt="App feature card 5">
+        <img src="assets/cards/6.png" alt="App feature card 6">
+        <img src="assets/cards/7.png" alt="App feature card 7">
+        <img src="assets/cards/8.png" alt="App feature card 8">
+        <img src="assets/cards/9.png" alt="App feature card 9">
+      </div>
+
+      <!-- ROW 2 (RIGHT) -->
+      <div class="app-bg-track right fast">
+        <!-- originals -->
+        <img src="assets/cards/1.png" alt="App feature card 1">
+        <img src="assets/cards/2.png" alt="App feature card 2">
+        <img src="assets/cards/3.png" alt="App feature card 3">
+        <img src="assets/cards/4.png" alt="App feature card 4">
+        <img src="assets/cards/5.png" alt="App feature card 5">
+        <img src="assets/cards/6.png" alt="App feature card 6">
+        <img src="assets/cards/7.png" alt="App feature card 7">
+        <img src="assets/cards/8.png" alt="App feature card 8">
+        <img src="assets/cards/9.png" alt="App feature card 9">
+
+        <!-- duplicates -->
+        <img src="assets/cards/1.png" alt="App feature card 1">
+        <img src="assets/cards/2.png" alt="App feature card 2">
+        <img src="assets/cards/3.png" alt="App feature card 3">
+        <img src="assets/cards/4.png" alt="App feature card 4">
+        <img src="assets/cards/5.png" alt="App feature card 5">
+        <img src="assets/cards/6.png" alt="App feature card 6">
+        <img src="assets/cards/7.png" alt="App feature card 7">
+        <img src="assets/cards/8.png" alt="App feature card 8">
+        <img src="assets/cards/9.png" alt="App feature card 9">
+      </div>
+
+    </div>
+
+    <!-- CENTER CONTENT -->
+    <div class="app-phone">
+
+      <div class="app-title">Biddge</div>
+
+      <div class="phone-frame">
+        <img src="assets/app-screen.png" alt="Biddge app interface screenshot">
+      </div>
+
+      <p class="app-cta-text">Download the app now</p>
+
+      <div class="app-buttons">
+        <a href="#" class="store-btn">App Store</a>
+        <a href="#" class="store-btn">Google Play</a>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2023 Biddge. All rights reserved. <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+</footer>
+
+<script src="js/theme.js"></script>
+<script>
+function openCommunity(type) {
+  localStorage.setItem("selectedCommunity", type);
+  window.location.href = "community.html";
+}
+</script>
+
+</body>
+</html>

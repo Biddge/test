@@ -1,4 +1,4 @@
-/* =========================
+/* ========================
    THEME VARIABLES
 ========================= */
 :root {
@@ -44,6 +44,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
+  animation: fadeIn 0.4s ease;
 }
 
 main {
@@ -53,7 +54,21 @@ main {
 section {
   max-width: 1100px;
   margin: auto;
-  padding: 40px 20px; /* COMPACT */
+  padding: 40px 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
 }
 
 /* =========================
@@ -106,6 +121,7 @@ nav {
   color: var(--text);
   text-decoration: none;
   position: relative;
+  transition: color 0.3s ease;
 }
 
 .nav-left a.active::after,
@@ -127,6 +143,12 @@ nav {
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text);
+  transition: border-color 0.3s ease;
+}
+
+.nav-search:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 .theme-toggle {
@@ -137,6 +159,12 @@ nav {
   border: none;
   cursor: pointer;
   color: var(--text);
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  transform: scale(1.05);
 }
 
 .theme-icon {
@@ -154,17 +182,13 @@ html[data-theme="dark"] .theme-icon {
 }
 
 /* =========================
-   HERO (COMPACT)
+   HERO
 ========================= */
 .hero {
   min-height: 65vh;
   text-align: center;
   padding: 80px 20px 60px;
-  background: radial-gradient(
-    circle at top,
-    var(--hero-grad-1),
-    var(--hero-grad-2)
-  );
+  background: radial-gradient(circle at top, var(--hero-grad-1), var(--hero-grad-2));
 }
 
 .hero h1 {
@@ -192,6 +216,7 @@ html[data-theme="dark"] .theme-icon {
   border-radius: 999px;
   font-size: 14px;
   text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn.primary {
@@ -200,36 +225,40 @@ html[data-theme="dark"] .theme-icon {
   font-weight: 600;
 }
 
+.btn.primary:hover,
+.btn.primary:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 .btn.secondary {
-  border: 1px solid rgba(255,255,255,0.6);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   color: #ffffff;
+}
+
+.btn.secondary:hover,
+.btn.secondary:focus {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .hero-video {
   margin-top: 28px;
-  max-width: 480px;        /* controls width */
-  max-height: 420px;       /* 🔥 controls length */
+  max-width: 480px;
+  max-height: 420px;
   margin-inline: auto;
   border-radius: 18px;
   overflow: hidden;
 }
+
 .hero-video video {
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* keeps it clean & cropped nicely */
+  object-fit: cover;
 }
-
-@media (max-width: 768px) {
-  .hero-video {
-    max-width: 100%;
-    max-height: 260px;   /* smaller on mobile */
-    border-radius: 14px;
-  }
-}
-
 
 /* =========================
-   COMMUNITIES (COMPACT)
+   COMMUNITIES
 ========================= */
 .communities {
   padding: 70px 20px;
@@ -252,6 +281,9 @@ html[data-theme="dark"] .theme-icon {
   display: flex;
   gap: 18px;
   width: max-content;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
 }
 
 .row-1 {
@@ -273,6 +305,13 @@ html[data-theme="dark"] .theme-icon {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.community-card:hover,
+.community-card:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .community-card h3 {
@@ -283,11 +322,6 @@ html[data-theme="dark"] .theme-icon {
 .community-card p {
   font-size: 13px;
   color: var(--text-secondary);
-}
-
-.community-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* =========================
@@ -303,49 +337,58 @@ html[data-theme="dark"] .theme-icon {
   to { transform: translateX(0); }
 }
 
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 34px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
-
-  .nav-left,
-  .nav-center {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-
 /* =========================
-   APP SECTION (DOWNLOAD)
+   APP SECTION
 ========================= */
 .app-section {
   position: relative;
-  padding: 90px 20px 70px;
+  padding: 140px 20px;
   overflow: hidden;
   text-align: center;
 }
 
-/* BACKGROUND FLOATING CARDS */
 .app-bg {
   position: absolute;
   inset: 0;
-  overflow: hidden;
-  opacity: 0.25;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 70px;
+  opacity: 0.22;
   pointer-events: none;
+  z-index: 1;
 }
 
 .app-bg-track {
   display: flex;
   gap: 28px;
   width: max-content;
-  animation: app-scroll 60s linear infinite;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.app-bg-track.left {
+  animation-name: float-left;
+}
+
+.app-bg-track.right {
+  animation-name: float-right;
+}
+
+.app-bg-track.fast {
+  animation-duration: 16s;
 }
 
 .app-bg img {
@@ -355,97 +398,81 @@ html[data-theme="dark"] .theme-icon {
   object-fit: cover;
 }
 
-/* PHONE */
 .app-phone {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
 }
 
 .phone-frame {
-  width: 260px;
-  margin: auto;
-  border-radius: 34px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  padding: 14px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-}
-
-.phone-header {
-  font-weight: 700;
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: var(--primary);
+  width: 300px;
+  border-radius: 40px;
+  background: linear-gradient(180deg, #111, #000);
+  padding: 18px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
 }
 
 .phone-frame img {
   width: 100%;
-  border-radius: 22px;
+  border-radius: 26px;
   display: block;
 }
 
-/* TEXT + CTA */
 .app-cta-text {
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 22px;
+  font-size: 18px;
   font-weight: 600;
 }
 
 .app-buttons {
-  margin-top: 14px;
+  margin-top: 16px;
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .store-btn {
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   text-decoration: none;
-  background: var(--card-bg);
-  color: var(--text);
-  border: 1px solid var(--border-color);
+  backdrop-filter: blur(6px);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.store-btn:hover {
+.store-btn:hover,
+.store-btn:focus {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* DARK MODE BOOST */
 html[data-theme="dark"] .app-bg {
   opacity: 0.35;
 }
 
-/* ANIMATION */
-@keyframes app-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+@keyframes float-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .phone-frame {
-    width: 230px;
-  }
-
-  .app-bg img {
-    width: 90px;
-    height: 90px;
-  }
+@keyframes float-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 /* =========================
    AUTH / LOGIN PAGE
 ========================= */
-
 .auth-page {
   min-height: 100vh;
   display: flex;
@@ -463,7 +490,6 @@ html[data-theme="dark"] .app-bg {
   border-radius: 18px;
 }
 
-/* SOCIAL BUTTONS */
 .social-btn {
   width: 100%;
   padding: 14px;
@@ -481,8 +507,9 @@ html[data-theme="dark"] .app-bg {
   color: var(--text);
 }
 
-.social-btn:hover {
-  background: var(--bg-hover);
+.social-btn:hover,
+.social-btn:focus {
+  background: rgba(0, 0, 0, 0.05);
   transform: translateY(-1px);
 }
 
@@ -491,7 +518,6 @@ html[data-theme="dark"] .app-bg {
   height: 18px;
 }
 
-/* DIVIDER */
 .divider {
   display: flex;
   align-items: center;
@@ -510,7 +536,6 @@ html[data-theme="dark"] .app-bg {
   color: var(--text-secondary);
 }
 
-/* TABS */
 .auth-tabs {
   display: flex;
   margin-bottom: 24px;
@@ -525,6 +550,7 @@ html[data-theme="dark"] .app-bg {
   border-bottom: 2px solid transparent;
   cursor: pointer;
   color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 .auth-tabs .active {
@@ -532,7 +558,6 @@ html[data-theme="dark"] .app-bg {
   color: var(--primary);
 }
 
-/* FORM */
 .auth-form input {
   width: 100%;
   padding: 14px;
@@ -541,6 +566,12 @@ html[data-theme="dark"] .app-bg {
   border: 1px solid var(--border-color);
   background: var(--bg);
   color: var(--text);
+  transition: border-color 0.3s ease;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 .password-field {
@@ -556,7 +587,6 @@ html[data-theme="dark"] .app-bg {
   font-size: 14px;
 }
 
-/* LINKS */
 .forgot {
   display: block;
   text-align: right;
@@ -566,7 +596,6 @@ html[data-theme="dark"] .app-bg {
   text-decoration: none;
 }
 
-/* PRIMARY BUTTON */
 .primary-btn {
   width: 100%;
   padding: 14px;
@@ -576,9 +605,14 @@ html[data-theme="dark"] .app-bg {
   color: #fff;
   font-weight: 600;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-/* TERMS */
+.primary-btn:hover,
+.primary-btn:focus {
+  transform: translateY(-2px);
+}
+
 .terms {
   margin-top: 24px;
   font-size: 12px;
@@ -590,150 +624,93 @@ html[data-theme="dark"] .app-bg {
   color: var(--primary);
   text-decoration: none;
 }
+
 .apple-icon {
   width: 18px;
   height: 18px;
   fill: currentColor;
 }
+
 /* =========================
-   APP SECTION – 2 ROW FLOAT (FINAL)
-========================= */
-
-.app-section {
-  position: relative;
-  padding: 140px 20px;
-  overflow: hidden;
-  text-align: center;
-}
-
-/* BACKGROUND FLOAT */
-.app-bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 70px;
-  opacity: 0.22;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* FLOAT TRACK */
-.app-bg-track {
-  display: flex;
-  gap: 28px;
-  width: max-content;
-
-  /* loop safety */
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  will-change: transform;
-}
-
-.app-bg-track img {
-  width: 120px;
-  height: 120px;
-  border-radius: 16px;
-  object-fit: cover;
-}
-
-/* DIRECTIONS */
-.app-bg-track.left {
-  animation-name: float-left;
-}
-
-.app-bg-track.right {
-  animation-name: float-right;
-}
-
-/* SPEED (CHANGE ONLY THIS TO CONTROL SPEED) */
-.app-bg-track.fast {
-  animation-duration: 16s; /* 🔥 faster loop */
-}
-
-/* CENTER CONTENT */
-.app-phone {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* TITLE */
-.app-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 16px;
-}
-
-/* PHONE */
-.phone-frame {
-  width: 300px;
-  border-radius: 40px;
-  background: linear-gradient(180deg, #111, #000);
-  padding: 18px;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-}
-
-.phone-frame img {
-  width: 100%;
-  border-radius: 26px;
-  display: block;
-}
-
-/* TEXT */
-.app-cta-text {
-  margin-top: 22px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-/* BUTTONS */
-.app-buttons {
-  margin-top: 16px;
-  display: flex;
-  gap: 14px;
-}
-
-.store-btn {
-  padding: 12px 22px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.06);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.15);
-  text-decoration: none;
-  backdrop-filter: blur(6px);
-}
-
-/* ANIMATIONS (DO NOT CHANGE -50%) */
-@keyframes float-left {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-@keyframes float-right {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .phone-frame {
-    width: 250px;
-  }
-
-  .app-bg-track img {
-    width: 90px;
-    height: 90px;
-  }
-}
-/* =========================
-   MOBILE SIDE PANEL (FINAL)
+   MOBILE
 ========================= */
 @media (max-width: 768px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero-video {
+    max-width: 100%;
+    max-height: 260px;
+    border-radius: 14px;
+  }
+
+  .nav-left,
+  .nav-center {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  nav {
+    height: 64px;
+  }
+
+  .nav-inner {
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-left a:not(.brand) {
+    display: none;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .nav-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-search {
+    width: 100%;
+    max-width: 170px;
+    font-size: 14px;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-lang,
+  .theme-text {
+    display: none !important;
+  }
+
+  .hamburger {
+    color: var(--text);
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 9999;
+  }
+
+  html[data-theme="dark"] .hamburger {
+    color: #ffffff;
+  }
 
   .mobile-menu {
     position: fixed;
@@ -769,19 +746,29 @@ html[data-theme="dark"] .app-bg {
     margin-bottom: 20px;
     cursor: pointer;
   }
-}
-body {
-  animation: fadeIn 0.4s ease;
-}
 
-@keyframes fadeIn {
-  from {
+    .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
     opacity: 0;
-    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 9998;
   }
-  to {
+
+  .menu-overlay.show {
     opacity: 1;
-    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .phone-frame {
+    width: 250px;
+  }
+
+  .app-bg img {
+    width: 90px;
+    height: 90px;
   }
 }
-
